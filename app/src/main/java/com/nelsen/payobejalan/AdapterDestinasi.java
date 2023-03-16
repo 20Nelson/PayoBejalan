@@ -1,6 +1,7 @@
 package com.nelsen.payobejalan;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,17 +25,20 @@ public class AdapterDestinasi extends RecyclerView.Adapter<AdapterDestinasi.View
     @NonNull
     @Override
     public ViewHolderDestinasi onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View varView = LayoutInflater.from(ctx).inflate(R.layout.list_item_destinasi, parent, false);
+        return new ViewHolderDestinasi(varView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDestinasi holder, int position) {
-
+        holder.tvNama.setText(arrNama.get(position).toString());
+        holder.tvAlamat.setText(arrAlamat.get(position).toString());
+        holder.tvJam.setText(arrJam.get(position).toString());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return arrNama.size();
     }
 
     public class ViewHolderDestinasi extends RecyclerView.ViewHolder {
