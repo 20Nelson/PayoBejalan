@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +35,7 @@ public class AdapterDestinasi extends RecyclerView.Adapter<AdapterDestinasi.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDestinasi holder, int position) {
+        holder.tvId.setText(arrId.get(position).toString());
         holder.tvNama.setText(arrNama.get(position).toString());
         holder.tvAlamat.setText(arrAlamat.get(position).toString());
         holder.tvJam.setText(arrJam.get(position).toString());
@@ -72,7 +74,18 @@ public class AdapterDestinasi extends RecyclerView.Adapter<AdapterDestinasi.View
                     pesan.setNegativeButton("Hapus", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            MyDatabaseHelper myDB = new MyDatabaseHelper(ctx);
 
+                            long eks = myDB.hapusData(tvId.getText().toString());
+
+                            if (eks == -1){
+                                Toast.makeText(ctx, "Gagal Hapus Data", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(ctx, "Sukses Hapus Data", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                                ((MainActivity)ctx).onResume();
+                            }
                         }
                     });
 

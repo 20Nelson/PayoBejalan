@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_id"
             android:text="ID"
+            android:visibility="gone"
             android:textSize="17sp"
             android:textStyle="bold"/>
 
